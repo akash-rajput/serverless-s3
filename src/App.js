@@ -15,7 +15,7 @@ function App() {
           <Route path="/">
             <RepoList />
           </Route>
-          <Route path="/respository/:id">
+          <Route path="/respo/:id">
             <RepoDetails />
           </Route>
         </Switch>

@@ -15,7 +15,7 @@ function RepoList() {
     <>
       {repos.map((repo) => (
         <div key={repo.id} className="repo-list-item">
-          <Link to={`/repository/${repo.id}`}>{repo.full_name}</Link>
+          <Link to={`/repo/${repo.id}`}>{repo.full_name}</Link>
         </div>
       ))}
     </>

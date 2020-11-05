@@ -1,0 +1,37 @@
+defaults: &defaults
+  parallelism: 1
+  docker:
+    - image: alpine
+
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@1.0.0
+  serverless: circleci/serverless-framework@1.0.1
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: yarn install
+      - run:
+          name: build
+          command: yarn build
+  deploy:
+    <<: *defaults
+    executor: serverless/default
+    steps:
+      - aws-cli/setup
+      - serverless/setup:
+          app-name: serverless-framework-orb
+          org-name: circleci
+      - run:
+          name: deploy
+          command: client deploy --no-confirm
+workflows:
+  deploy:
+    jobs:
+      - build
+      - deploy
+      

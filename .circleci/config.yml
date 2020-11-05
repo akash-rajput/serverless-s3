@@ -12,6 +12,9 @@ jobs:
       - checkout
       - node/install-yarn
       - run:
+          name: install
+          command: yarn install
+      - run:
           name: build
           command: yarn build
   deploy:

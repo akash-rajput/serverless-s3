@@ -26,7 +26,7 @@ jobs:
           org-name: circleci
       - run:
           name: deploy
-          command: client deploy --no-confirm
+          command: serverless client deploy --no-confirm
 workflows:
   deploy:
     jobs:

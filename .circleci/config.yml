@@ -4,19 +4,6 @@ orbs:
   serverless: circleci/serverless-framework@1.0.1
   node: circleci/node@4.1.0
 jobs:
-  build:
-    executor:
-      name: node/default
-      tag: '10.23.0'
-    steps:
-      - checkout
-      - node/install-yarn
-      - run:
-          name: install
-          command: yarn install
-      - run:
-          name: build
-          command: yarn build
   deploy:
     executor: serverless/default
     steps:
@@ -34,14 +21,11 @@ jobs:
           org-name: circleci
       - run:
           name: deploy
-          command: serverless deploy --no-confirm
+          command: serverless client deploy --no-confirm
 workflows:
   deploy:
     jobs:
-      # - build
       - deploy:
-          # requires:
-          #   - build
           filters:
             branches:
               only:
